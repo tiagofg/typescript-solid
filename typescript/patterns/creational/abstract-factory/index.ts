@@ -28,3 +28,14 @@ class ProductB implements IProductB {
     return `ProductB1 combines with (${result})`;
   }
 }
+
+class Factory implements IFactory {
+  createProductA(): IProductA {
+    return new ProductA();
+  }
+  
+  createProductB(): IProductB {
+    return new ProductB();
+  }
+
+}
