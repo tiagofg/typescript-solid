@@ -20,21 +20,20 @@ abstract class CoffeeDecorator implements Coffee {
     this.decoratedCoffee = coffee;
   }
 
-  cost(): number {
-    return this.decoratedCoffee.cost();
-  }
-
-  description(): string {
-    return this.decoratedCoffee.description();
-  }
+  abstract cost(): number;
+  abstract description(): string;
 }
 
 class MilkDecorator extends CoffeeDecorator {
+  constructor(coffee: Coffee) {
+    super(coffee);
+  }
+
   cost(): number {
-    return super.cost() + 2;
+    return this.decoratedCoffee.cost() + 2;
   }
 
   description(): string {
-    return super.description() + ", with Milk";
+    return this.decoratedCoffee.description() + ", with Milk";
   }
 }
