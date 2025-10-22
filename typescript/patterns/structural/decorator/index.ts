@@ -13,7 +13,7 @@ class SimpleCoffee implements Coffee {
   }
 }
 
-class CoffeeDecorator implements Coffee {
+abstract class CoffeeDecorator implements Coffee {
   protected decoratedCoffee: Coffee;
 
   constructor(coffee: Coffee) {
