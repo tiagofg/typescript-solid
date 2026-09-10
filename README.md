@@ -2,6 +2,34 @@
 
 Small, framework-free TypeScript examples of classic GoF design patterns. Each folder in `typescript/patterns` contains a minimal implementation you can copy or extend.
 
+The repository currently covers 17 patterns. It is a focused example collection rather than a complete SOLID-principles curriculum.
+
+## Pattern index
+
+| Category | Examples |
+| --- | --- |
+| Creational | [Singleton](typescript/patterns/creational/singleton/index.ts), [Abstract Factory](typescript/patterns/creational/abstract-factory/index.ts), [Simple Factory](typescript/patterns/creational/factory/index.ts), [Builder](typescript/patterns/creational/builder/index.ts), [Prototype](typescript/patterns/creational/prototype/index.ts) |
+| Structural | [Adapter](typescript/patterns/structural/adapter/index.ts), [Bridge](typescript/patterns/structural/bridge/index.ts), [Composite](typescript/patterns/structural/composite/index.ts), [Decorator](typescript/patterns/structural/decorator/index.ts), [Facade](typescript/patterns/structural/facade/index.ts) |
+| Behavioral | [Strategy](typescript/patterns/behavioral/strategy/index.ts), [Chain of Responsibility](typescript/patterns/behavioral/chain-of-responsibility/index.ts), [Command](typescript/patterns/behavioral/command/index.ts), [Iterator](typescript/patterns/behavioral/iterator/index.ts), [Observer](typescript/patterns/behavioral/observer/index.ts), [State](typescript/patterns/behavioral/state/index.ts), [Template Method](typescript/patterns/behavioral/template/index.ts) |
+
+## Setup and current execution status
+
+Install the locked development dependencies with:
+
+```bash
+npm ci
+```
+
+The pattern files are standalone source examples and are not exported from a shared entry point. The checked-in `typescript/index.ts` is empty, while `index.html` references a missing `src/index.ts`. As a result, the declared Parcel `start` and `build` scripts do not currently provide a working way to run the examples. The repository also has no `tsconfig.json` or explicit TypeScript compiler dependency.
+
+`npm test` is the package's placeholder script and exits with status 1; no automated tests are included.
+
+## Learning notes and tradeoffs
+
+These examples emphasize the shape of each pattern with short classes and interfaces. They intentionally leave out application wiring, module exports, error-handling policies, and broader domain concerns. When adapting one, consider whether the extra abstraction makes likely changes easier to manage; a direct implementation can be clearer when there is only one stable behavior.
+
+The folder named `factory` implements a static `CarFactory.createCar` switch. It is described here as **Simple Factory**, because subclasses do not override a factory method.
+
 ## Patterns and usage
 
 ### Creational
@@ -22,7 +50,7 @@ const productB = factory.createProductB();
 console.log(productB.combinedOperation(productA));
 ```
 
-**Factory Method** — delegate object creation to a factory class.
+**Simple Factory** — centralize object creation behind a static factory function.
 ```ts
 const suv = CarFactory.createCar('suv', 'Explorer', 2024);
 const sedan = CarFactory.createCar('sedan', 'Accord', 2023);
